@@ -17,8 +17,7 @@ import java.util.Set;
 import javax.swing.JFrame;
 
 /**
- *
- * @author roserp
+ * The Tool is the controller of the Model view Controller pattern. 
  */
 public class GolfTool {
     
