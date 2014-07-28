@@ -94,7 +94,7 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
-            <version>3.6.0.Final</version>
+            <version>3.6.8.Final</version>
         </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
