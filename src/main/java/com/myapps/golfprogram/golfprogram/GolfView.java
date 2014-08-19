@@ -17,6 +17,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Iterator;
 import java.util.Set;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -37,7 +38,11 @@ public class GolfView extends JFrame implements ActionListener{
     private MainButtonPanel buttonPanel;
     private ContactPanel contactPanel;
     private JPanel listPanel = new JPanel();
-    private JComboBox memberCombo = new JComboBox(new String[0]);
+    //private JComboBox memberCombo = new JComboBox(new String[0]);
+    private DefaultComboBoxModel comboModel = new DefaultComboBoxModel();
+    
+    private JComboBox memberCombo = new JComboBox(comboModel);
+    
     private ContactTablePanel detailsPanel = null;
 
     public GolfView(GolfTool tool, GolfModel golfModel) {
@@ -94,6 +99,12 @@ public class GolfView extends JFrame implements ActionListener{
         for(int i = 0; i < names.length; i++)
         memberCombo.addItem(names[i]);
     }
+
+    public DefaultComboBoxModel getComboModel() {
+        return comboModel;
+    }
+    
+    
 
 //    public void saveContactInfo(){
 //        

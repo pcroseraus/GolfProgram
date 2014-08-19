@@ -87,4 +87,12 @@ class GolfModel {
         System.out.println("ID found is " + id);
         return id;
     }
+    
+    public void addContact(Contact contact){
+        contacts.add(contact);
+    }
+
+    void removeContact(Contact contact) {
+        contacts.remove(contact);
+    }
 }

@@ -61,15 +61,17 @@ public class GolfTool {
     }
 
     public void notifySaveContact() {
-        System.out.println("WTF");
+        
         Contact data = panel.getContactData();
         Long id = golfModel.getIdForName(data.getLastName() + "," + data.getFirstName());
         if( id == 0 ){
             //this is a save because the id could not be found
             contactDao.save(data);
+            golfView.getComboModel().addElement(data.getLastName() + ", " + data.getFirstName());
+            golfModel.addContact(data);
             
         }else{
-            //this is an edit because the id was found nad must be > 0
+            //this is an edit because the id was found and must be > 0
             Contact contact = contactDao.findById(id);
             contact.setFirstName(data.getFirstName());
             contact.setLastName(data.getLastName());
@@ -116,6 +118,7 @@ public class GolfTool {
             
             
             contactDao.save(contact);
+            golfView.getComboModel().addElement(contact.getLastName() + "' " + contact.getFirstName());
             
             //this is an edit
             
@@ -135,6 +138,8 @@ public class GolfTool {
         long id = golfModel.getIdForName(item);
         Contact contact = contactDao.findById(id);
         contactDao.delete(contact);
+        golfView.getComboModel().removeElement(contact.getLastName()+ ", " + contact.getFirstName());
+        golfModel.removeContact(contact);
     }
     
     public void notifyEditContact(String item) {
