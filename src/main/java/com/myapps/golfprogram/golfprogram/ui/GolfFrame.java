@@ -25,13 +25,11 @@ public class GolfFrame extends JFrame{
     public static String TITLE = "Golf Contacts";
     
     private MainButtonPanel buttonPanel;
-    //private ContactPanel contactPanel;
-
+ 
     public GolfFrame() throws HeadlessException {
         super(TITLE);
         setLayoutManager();
         initButtonPanel();
-        //initContactPanel();
         addComponents();
     }
     
@@ -40,6 +38,9 @@ public class GolfFrame extends JFrame{
         getContentPane().setLayout(layout);
     }
 
+    /**
+     * Responds to a close button selection on the GolfFrame. Shutdown the JVM
+     */
     public void notifyCloseSelected() {
         System.exit(0);
     }
@@ -52,12 +53,11 @@ public class GolfFrame extends JFrame{
         //buttonPanel = new MainButtonPanel(this);
     }
     
-//    private void initContactPanel(){
-//        contactPanel = new ContactPanel();
-//    }
-    
+  
+    /**
+     * Add the table of contacts, and the button Panel
+     */
     private void addComponents(){
-        //this.getContentPane().add(contactPanel, BorderLayout.NORTH);
         this.getContentPane().add(new ContactTablePanel(), BorderLayout.CENTER);
         this.getContentPane().add(buttonPanel, BorderLayout.SOUTH);
     }
@@ -85,11 +85,5 @@ public class GolfFrame extends JFrame{
 //         contactTelDetail = new ContactTelDetail("Work", data.getWorkPhone());
 //         contact.addContactTelDetail(contactTelDetail);
 //         contactDao.save(contact);
-//    }
-    
-    
-    
-    
-    
-    
+//    }  
 }

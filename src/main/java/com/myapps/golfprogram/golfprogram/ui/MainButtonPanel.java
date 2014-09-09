@@ -21,6 +21,7 @@ public class MainButtonPanel extends JPanel implements ActionListener{
     private JButton addButton = new JButton("Add Contact");
     private JButton deleteButton = new JButton("Delete Contact");
     private JButton editButton = new JButton("Edit Contact");
+    private JButton addScoreButton  = new JButton("Add a Score");
     private GolfView frame;
 
     public MainButtonPanel(GolfView frame) {
@@ -35,12 +36,14 @@ public class MainButtonPanel extends JPanel implements ActionListener{
         closeButton.addActionListener(this);
         deleteButton.addActionListener(this);
         editButton.addActionListener(this);
+        addScoreButton.addActionListener(this);
     }
     
     private void initComponents(){
         add(editButton);
         add(deleteButton);
         add(addButton);
+        add(addScoreButton);
         add(closeButton);
     }
 
@@ -54,6 +57,8 @@ public class MainButtonPanel extends JPanel implements ActionListener{
         frame.notifyDeleteSelected();
         }else if(e.getSource() == editButton){
         frame.notifyEditSelected();
+        }else if(e.getSource() == addScoreButton){
+        frame.notifyAddScoreSelected();
         }
         
     }

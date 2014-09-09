@@ -35,7 +35,9 @@ import javax.persistence.Version;
     @NamedQuery(name="Contact.findAllWithDetail",
             query = "select distinct c from Contact c left join fetch c.contactTelDetails t"),
     @NamedQuery(name="Contact.findById",
-            query = "select distinct c from Contact c left join fetch c.contactTelDetails t where c.id = :id")   
+            query = "select distinct c from Contact c left join fetch c.contactTelDetails t where c.id = :id"),  
+//    @NamedQuery(name = "Contact.findAllWithScores",
+//            query = "select distinct c from Contact c left join fetch c.scores where c.id = :id"),
 })
 public class Contact implements Serializable{
     
@@ -48,7 +50,7 @@ public class Contact implements Serializable{
     private Set<ContactTelDetail> contactTelDetails = 
             new HashSet<ContactTelDetail>();
     
-    
+    private Set<Score> scores = new HashSet<Score>();
     
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -124,5 +126,21 @@ public class Contact implements Serializable{
     public void removeContactTelDetail(ContactTelDetail contactTelDetail){
         getContactTelDetails().remove(contactTelDetail);
     }
+    
+    @OneToMany(fetch=FetchType.EAGER, mappedBy = "contact", cascade = CascadeType.ALL,
+            orphanRemoval=true)
+    public Set<Score> getScores(){
+        return this.scores;
+    }
+    
+    public void setScores(Set<Score>scores) {
+        this.scores = scores;
+    }
+    
+    public void addScore(Score score){
+        score.setContact(this);
+        getScores().add(score);
+    }
+    
     
 }

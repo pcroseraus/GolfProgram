@@ -38,7 +38,7 @@ public class GolfView extends JFrame implements ActionListener{
     private MainButtonPanel buttonPanel;
     private ContactPanel contactPanel;
     private JPanel listPanel = new JPanel();
-    //private JComboBox memberCombo = new JComboBox(new String[0]);
+    
     private DefaultComboBoxModel comboModel = new DefaultComboBoxModel();
     
     private JComboBox memberCombo = new JComboBox(comboModel);
@@ -63,23 +63,44 @@ public class GolfView extends JFrame implements ActionListener{
         getContentPane().setLayout(layout);
     }
 
+    /**
+     * When the user selects close from the MainButtonPanel  on the GolfView, 
+     * this method will handle closure of the Program. 
+     */
     public void notifyCloseSelected() {
         System.exit(0);
     }
     
+    /**
+     * Responds to the add Button on the Golf View, when a user wants to add a 
+     * contact. The tool initiates and add Panel and its button panel.  The user
+     * can add and save a new contact. 
+     */
     public void notifyAddSelected() {
         tool.notifyAddSelected();
     }
     
+    /**
+     * This method creates the ButtonPanel with buttons for closeButton, 
+     * addButton , deleteButton  associated with Contact management. 
+     */
     private void initButtonPanel(){
         buttonPanel = new MainButtonPanel(this);
     }
     
+    /**
+     * This method instantiates the contact JTable that will display the phone
+     * information for a contact. 
+     */
     private void initContactDetailsPanel(){
         detailsPanel = new ContactTablePanel();
     }
     
-       
+    /**
+     * This method adds to the Golf Frame,the following, a list panel which is a
+     * JPanel with a Combo Box of Members, A details panel which is designed to
+     * 
+     */   
     private void addComponents(){
         
         this.getContentPane().add(listPanel, BorderLayout.NORTH);
@@ -87,6 +108,10 @@ public class GolfView extends JFrame implements ActionListener{
         this.getContentPane().add(buttonPanel, BorderLayout.SOUTH);
     }
     
+    /**
+     * This is a panel with the Member Combo that will allow a user to select a
+     * member. 
+     */
     private void initJListPanel() {
         memberCombo.addActionListener(this);
         JScrollPane scroller = new JScrollPane(memberCombo);  
@@ -95,41 +120,23 @@ public class GolfView extends JFrame implements ActionListener{
         listPanel.add(memberCombo);
     }
     
+    /**
+     * This panel sets the data on the Member Combo Box. 
+     * @param names 
+     */
     public void setJComboBox(String[] names){
         for(int i = 0; i < names.length; i++)
         memberCombo.addItem(names[i]);
     }
 
+    /**
+     * In order to use the ComboBox Model, this method provides access to it. 
+     * @return 
+     */
     public DefaultComboBoxModel getComboModel() {
         return comboModel;
     }
     
-    
-
-//    public void saveContactInfo(){
-//        
-//         GenericXmlApplicationContext ctx = new GenericXmlApplicationContext();
-//         ctx.load("classpath:app-context.xml");
-//         ctx.refresh();
-//        
-//         ContactDao contactDao = ctx.getBean("contactDao", ContactDao.class);
-//         //ContactData data = contactPanel.getContactData();
-//         System.out.println(data.toString());
-//         Date convertedDate= data.convertStringDateToDate(data.getBirthdate());
-//         System.out.println("Date is now " + convertedDate.toString());
-//        
-//         Contact contact = new Contact();
-//         contact.setFirstName(data.getFirstName());
-//         contact.setLastName(data.getLastName());
-//         contact.setBirthDate(convertedDate);
-//         ContactTelDetail contactTelDetail = new ContactTelDetail("Home", data.getHomePhone());
-//         contact.addContactTelDetail(contactTelDetail);
-//         contactTelDetail = new ContactTelDetail("Mobile", data.getMobilePhone());
-//         contact.addContactTelDetail(contactTelDetail);
-//         contactTelDetail = new ContactTelDetail("Work", data.getWorkPhone());
-//         contact.addContactTelDetail(contactTelDetail);
-//         contactDao.save(contact);
-//    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -144,12 +151,18 @@ public class GolfView extends JFrame implements ActionListener{
         }
     }
 
+    /**
+     * Handles the delete of a member. 
+     */
     public void notifyDeleteSelected() {
         String item = (String)memberCombo.getSelectedItem();
         System.out.println("Delete Button Selected " + item);
         tool.notifyDeleteContact(item);
     }
 
+    /**
+     * Handles the edit of a Contact. 
+     */
     public void notifyEditSelected() {
         
         String homePhone = null;
@@ -185,10 +198,13 @@ public class GolfView extends JFrame implements ActionListener{
         frame.getContentPane().add(contactPanel, BorderLayout.CENTER);
         frame.setSize(400, 300);
         frame.setVisible(true);
-        
-        
-        
+          
         System.out.println("need to bring up an editing session for member " + item + 
             theContact.toString());
+    }
+
+    public void notifyAddScoreSelected() {
+        System.out.println("Add Score Button Selected");
+        tool.addScore();
     }
 }

@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * The purpose for this class is the show for each contact selected, to show the
+ * home, mobile and work phones 
  */
 
 package com.myapps.golfprogram.golfprogram.ui;
@@ -18,8 +17,8 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * Will Represent a table of contacts
- * 
+ * Will Represent a table of contact information.  Contact information contains
+ * only a Home, Work, and Mobile Phone. 
  */
 public class ContactTablePanel extends JPanel {
     
@@ -28,29 +27,28 @@ public class ContactTablePanel extends JPanel {
                             "Mobile Phone"};
     
     Object[][] data = new Object[1][3];
-    //DefaultTableModel model = new DefaultTableModel(data, columnNames);
     JTable table = new JTable(data, columnNames);
     
     public ContactTablePanel() {
         super();
         setLayoutManager();
-        
         JScrollPane scrollPane = new JScrollPane(table);
         
-        //table.setFillsViewportHeight(true);
-        //scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);  
-        //scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);  
-        //table.setPreferredScrollableViewportSize(table.getPreferredSize());
         table.setFillsViewportHeight(true);
         add(table.getTableHeader());
-        add(scrollPane);
-        
+        add(scrollPane); 
     }
     
     private void setLayoutManager(){
         // does nothing 
     }
 
+    /**
+     * This method populates the table of contact information for a contact. 
+     * That includes the home, mobile, and work phone. If no data is included in
+     * the Contact object and empty cell is created. 
+     * @param theContact 
+     */
     public void setContact(Contact theContact) {
         int numberDetails = theContact.getContactTelDetails().size();
         Object[][] newData = new Object[1][3];
@@ -74,23 +72,10 @@ public class ContactTablePanel extends JPanel {
                 
             }
         }
-          //DefaultTableModel model = new DefaultTableModel(newData, columnNames);
-          //model.addRow(newData);
           
-//            model.addRow(data[0]);
-//            table.setModel(model);
-//            model.fireTableDataChanged();
-            for(int i = 0; i < 3; i++){
+         for(int i = 0; i < 3; i++){
                 table.getModel().setValueAt(newData[0][i], 0, i); 
-            table.updateUI();
-            
-        }
-        
-        
-        
-    }
-   
-    
-    
-    
+                table.updateUI();    
+        }   
+    }  
 }

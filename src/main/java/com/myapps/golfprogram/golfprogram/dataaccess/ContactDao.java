@@ -29,4 +29,6 @@ public interface ContactDao {
     //Delete a contact
     public void delete(Contact contact);
     
+//    //Find a contact with Scores by Id
+//    public List<Contact> findAllWithScores();
 }

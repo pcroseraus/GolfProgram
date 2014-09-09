@@ -9,6 +9,7 @@ package com.myapps.golfprogram.golfprogram;
 import com.myapps.golfprogram.golfprogram.dataaccess.Contact;
 import com.myapps.golfprogram.golfprogram.dataaccess.ContactDao;
 import com.myapps.golfprogram.golfprogram.dataaccess.ContactTelDetail;
+import com.myapps.golfprogram.golfprogram.scores.ScoresTool;
 import com.myapps.golfprogram.golfprogram.ui.AddContactButtonPanel;
 import com.myapps.golfprogram.golfprogram.ui.ContactPanel;
 import java.awt.BorderLayout;
@@ -45,6 +46,9 @@ public class GolfTool {
         return golfView;
     }
     
+    /**
+     * Responds to the add Button when a user wants to add a contact. 
+     */
     public void notifyAddSelected(){
         if(contactFrame == null){
             contactFrame = new JFrame("Add Contact Panel");
@@ -57,7 +61,6 @@ public class GolfTool {
         contactFrame.add(panel);
         contactFrame.setSize(400,250);
         contactFrame.setVisible(true);
-        
     }
 
     public void notifySaveContact() {
@@ -129,6 +132,10 @@ public class GolfTool {
         contactFrame = null;
     }
 
+    /**
+     * When the user does not want to add the New Contact , This method closes
+     * the frame. 
+     */
     public void notifyAddContactCanceled() {
         contactFrame.setVisible(false);
         contactFrame = null;
@@ -158,6 +165,11 @@ public class GolfTool {
     
     public JFrame getFrame(){
         return contactFrame;
+    }
+
+    void addScore() {
+        ScoresTool scoreTool = new ScoresTool(contactDao);
+        
     }
     
 }

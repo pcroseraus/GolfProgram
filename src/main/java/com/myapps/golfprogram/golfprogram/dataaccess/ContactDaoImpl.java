@@ -63,5 +63,11 @@ public class ContactDaoImpl implements ContactDao{
     public void delete(Contact contact) {
         sessionFactory.getCurrentSession().delete(contact);
     }
+
+//    @Override
+//    public List<Contact> findAllWithScores() {
+//        return sessionFactory.getCurrentSession().getNamedQuery(
+//                                        "Contact.findAllWithScores").list();
+//    }
     
 }
