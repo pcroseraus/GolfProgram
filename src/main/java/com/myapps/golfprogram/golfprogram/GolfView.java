@@ -25,8 +25,15 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
 /**
- *
- * @author roserp
+ * Important to note.  GolfView implements an ActionListener. What does this do?
+ * You would think it only forces Golf View to implement the method 
+ * actionPerformed.  It does more than this. Golf View actually is of type 
+ * GolfView and also can be an object type of ActionListener. Polymorphism is 
+ * supported by this notion.  
+ * This is the only way the call memberCombo.addActionListener(this); This is a
+ * reference to GolfView.  The argument to addActionListeener is an 
+ * ActionListener which GolfView became when it implemented ActionListener. 
+ * 
  */
 public class GolfView extends JFrame implements ActionListener{
     

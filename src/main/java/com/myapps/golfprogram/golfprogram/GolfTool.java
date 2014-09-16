@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package com.myapps.golfprogram.golfprogram;
 
 import com.myapps.golfprogram.golfprogram.dataaccess.Contact;
@@ -18,7 +12,14 @@ import java.util.Set;
 import javax.swing.JFrame;
 
 /**
- * The Tool is the controller of the Model view Controller pattern. 
+ * The Tool is the controller in the Model view Controller pattern usually 
+ * abbreviated MVC. This class should implement the Tool interface. TODO: 
+ * implement the Tool interface. 
+ * TODO: The Golf Model and Golf View are immutable and should be finals
+ * What does it mean to be final.  final indicates that a class member is 
+ * cannot be changed once set. So creating a final String and setting it to
+ * "Foo" Means you cannot set it to "Bar"  TODO:  Later we will expand our use
+ * of the contactDao and inject it here instead of passing it in. 
  */
 public class GolfTool {
     
@@ -29,7 +30,29 @@ public class GolfTool {
     private ContactPanel panel = new ContactPanel(this);
     
     
+    /**
+     * The Constructor for the Tool.  A constructor of any  class is designed to
+     * accept arguments and to create and populate class members. This tool 
+     * should not be creating a view component.  But it does.  JFrame is
+     * being constructed here. This should be done in the View. TODO; Move the
+     * creation of the JFrame to the GolfView. Never create Strings that are 
+     * immutable in classes.  TODO:  Create a public class ViewConstants.java
+     * that contains all public Strings for all UI classes. TODO: Make the "Add
+     * Contact Panel" String passed in to the UI a public static String in the 
+     * View Constants file. Use this string in the construction of the JFrame in 
+     * Golf View.  Why is this important.  static Strings are not 
+     * constructed during at run time. The more Strings you create at run time,
+     * the slower your program will run.  Doesn't sound like much of a slow 
+     * down, but if your product has 1000 classes, enhancements like this make 
+     * a big difference.  TODO Why are calling the contactDao to get all 
+     * contacts, passing in the contacts, then passing in the contactDao. Why 
+     * not use the contactDao in here to get the Contact List and reduce the 
+     * arguments passed in. 
+     * @param contacts
+     * @param contactDao 
+     */
     public GolfTool(List<Contact> contacts, ContactDao contactDao) {
+        //Models typically hold the data. This model will hold the contacts. 
         golfModel = new GolfModel(contacts);
         golfView = new GolfView(this,golfModel);
         this.contactDao = contactDao;
@@ -37,17 +60,31 @@ public class GolfTool {
         golfView.setJComboBox(names);
     }
 
-    
+    /**
+     * Return the model
+     * @return 
+     */
     public GolfModel getGolfModel() {
         return golfModel;
     }
 
+    /**
+     * Return the view
+     * @return 
+     */
     public GolfView getView() {
         return golfView;
     }
     
     /**
-     * Responds to the add Button when a user wants to add a contact. 
+     * Responds to the add Button when a user wants to add a contact.  Where 
+     * does this get called from.  The View.  Right click on this method, then
+     * select findUsages.  A pane will appear that shows the class that calls it
+     * and the line number and content. You can then double click the line and
+     * it will take you there. 
+     * 
+     * Why not just handle the button press in the View. Views should not handle 
+     * business logic. 
      */
     public void notifyAddSelected(){
         if(contactFrame == null){
