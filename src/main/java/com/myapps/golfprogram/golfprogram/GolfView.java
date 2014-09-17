@@ -46,6 +46,9 @@ public class GolfView extends JFrame implements ActionListener{
     private ContactPanel contactPanel;
     private JPanel listPanel = new JPanel();
     
+    private static final int VIEW_WIDTH = 600;
+    private static final int VIEW_HEIGHT = 500;
+
     private DefaultComboBoxModel comboModel = new DefaultComboBoxModel();
     
     private JComboBox memberCombo = new JComboBox(comboModel);
@@ -62,7 +65,7 @@ public class GolfView extends JFrame implements ActionListener{
         addComponents();
         this.model = golfModel;
         this.tool = tool;
-        
+	setViewVisibility();
     }
     
     private void setLayoutManager(){
@@ -70,6 +73,15 @@ public class GolfView extends JFrame implements ActionListener{
         getContentPane().setLayout(layout);
     }
 
+   /**
+     * This method sets the Views size and visibility. The method is called 
+     * from the View's constructor 
+     */
+    private void setViewVisibility() {
+        setSize(VIEW_WIDTH, VIEW_HEIGHT);
+	setVisible(true);
+    }
+    
     /**
      * When the user selects close from the MainButtonPanel  on the GolfView, 
      * this method will handle closure of the Program. 
