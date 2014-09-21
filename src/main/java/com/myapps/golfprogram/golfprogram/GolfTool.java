@@ -23,9 +23,9 @@ import javax.swing.JFrame;
  */
 public class GolfTool {
     
-    private GolfModel golfModel;
-    private GolfView golfView;
-    private ContactDao contactDao;
+    private final GolfModel golfModel;
+    private final GolfView golfView;
+    private final ContactDao contactDao;
     private JFrame contactFrame = new JFrame("Add Contact Panel");
     private ContactPanel panel = new ContactPanel(this);
     
