@@ -16,7 +16,7 @@ import static com.myapps.golfprogram.golfprogram.ui.StringConstants.CONTACT_ADD_
  * @author Brett
  */
 public class AddContacts extends JFrame implements ActionListener {
-
+    
     public AddContacts() {
         super(CONTACT_ADD_PANEL_NAME);
     }

@@ -4,18 +4,15 @@
  * and open the template in the editor.
  */
 
-package com.myapps.golfprogram.golfprogram.ui.contacts;
-
-import javax.swing.JPanel;
+package com.myapps.golfprogram.golfprogram.exceptions;
 
 /**
  *
  * @author Brett
  */
-public class AddContactButtonPanel extends JPanel {
-
-    public AddContactButtonPanel() {
-        super();
+public class DateFormatException extends Exception {
+    
+    public DateFormatException(String message) {
+        super(message);
     }
-            
 }
