@@ -7,13 +7,17 @@ package com.myapps.golfprogram.golfprogram.ui;
 
 import com.myapps.golfprogram.golfprogram.dataaccess.Contact;
 import com.myapps.golfprogram.golfprogram.dataaccess.ContactTelDetail;
+import static com.myapps.golfprogram.golfprogram.ui.StringConstants.CONTACT_PANEL_DETAIL_HOME;
+import static com.myapps.golfprogram.golfprogram.ui.StringConstants.CONTACT_PANEL_DETAIL_MOBILE;
+import static com.myapps.golfprogram.golfprogram.ui.StringConstants.CONTACT_PANEL_DETAIL_WORK;
+import static com.myapps.golfprogram.golfprogram.ui.StringConstants.CONTACT_PANEL_HOME_PHONE;
+import static com.myapps.golfprogram.golfprogram.ui.StringConstants.CONTACT_PANEL_MOBILE_PHONE;
+import static com.myapps.golfprogram.golfprogram.ui.StringConstants.CONTACT_PANEL_WORK_PHONE;
 import java.util.Iterator;
 import java.util.Set;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -22,9 +26,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ContactTablePanel extends JPanel {
     
-    String[] columnNames = {"Home Phone",
-                            "Work Phone",
-                            "Mobile Phone"};
+    String[] columnNames = {CONTACT_PANEL_HOME_PHONE,
+                            CONTACT_PANEL_WORK_PHONE,
+                            CONTACT_PANEL_MOBILE_PHONE};
     
     Object[][] data = new Object[1][3];
     JTable table = new JTable(data, columnNames);
@@ -59,17 +63,14 @@ public class ContactTablePanel extends JPanel {
         Iterator <ContactTelDetail>detailIter = details.iterator();
         while( detailIter.hasNext()){
             ContactTelDetail detail = detailIter.next();
-            if( detail.getTelType().equals("Home")){
-                newData[0][0] = detail.getTelNumber();
-                
+            if( detail.getTelType().equals(CONTACT_PANEL_DETAIL_HOME)){
+                newData[0][0] = detail.getTelNumber();                
             }
-            if( detail.getTelType().equals("Work")){
-                newData[0][1] = detail.getTelNumber();
-                
+            if( detail.getTelType().equals(CONTACT_PANEL_DETAIL_WORK)){
+                newData[0][1] = detail.getTelNumber();                
             }
-            if( detail.getTelType().equals("Mobile")){
-                newData[0][2] = detail.getTelNumber();
-                
+            if( detail.getTelType().equals(CONTACT_PANEL_DETAIL_MOBILE)){
+                newData[0][2] = detail.getTelNumber();                
             }
         }
           

@@ -8,7 +8,6 @@ package com.myapps.golfprogram.golfprogram;
 
 import com.myapps.golfprogram.golfprogram.dataaccess.Contact;
 import com.myapps.golfprogram.golfprogram.dataaccess.ContactDao;
-import com.myapps.golfprogram.golfprogram.ui.GolfFrame;
 import java.util.List;
 import org.springframework.context.support.GenericXmlApplicationContext;
 

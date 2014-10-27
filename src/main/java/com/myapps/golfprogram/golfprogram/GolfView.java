@@ -8,10 +8,9 @@ package com.myapps.golfprogram.golfprogram;
 
 import com.myapps.golfprogram.golfprogram.dataaccess.Contact;
 import com.myapps.golfprogram.golfprogram.dataaccess.ContactTelDetail;
-import com.myapps.golfprogram.golfprogram.ui.AddContactButtonPanel;
-import com.myapps.golfprogram.golfprogram.ui.ContactPanel;
 import com.myapps.golfprogram.golfprogram.ui.ContactTablePanel;
 import com.myapps.golfprogram.golfprogram.ui.MainButtonPanel;
+import com.myapps.golfprogram.golfprogram.ui.contacts.ContactPanel;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -58,14 +57,14 @@ public class GolfView extends JFrame implements ActionListener{
     public GolfView(GolfTool tool, GolfModel golfModel) {
        
         super(TITLE);
+        this.model = golfModel;
+        this.tool = tool;
         setLayoutManager();
         initJListPanel();
         initButtonPanel();
         initContactDetailsPanel();
         addComponents();
-        this.model = golfModel;
-        this.tool = tool;
-	setViewVisibility();
+	    setViewVisibility();
     }
     
     private void setLayoutManager(){
@@ -79,7 +78,7 @@ public class GolfView extends JFrame implements ActionListener{
      */
     private void setViewVisibility() {
         setSize(VIEW_WIDTH, VIEW_HEIGHT);
-	setVisible(true);
+	    setVisible(true);
     }
     
     /**
@@ -104,7 +103,7 @@ public class GolfView extends JFrame implements ActionListener{
      * addButton , deleteButton  associated with Contact management. 
      */
     private void initButtonPanel(){
-        buttonPanel = new MainButtonPanel(this);
+        buttonPanel = new MainButtonPanel(this, this.tool);
     }
     
     /**
@@ -206,17 +205,22 @@ public class GolfView extends JFrame implements ActionListener{
                 mobilePhone = detail.getTelNumber();
             }
         }
-        this.contactPanel = tool.getContactPanel();
-        contactPanel.setContactData(theContact, homePhone, workPhone, mobilePhone);
+//        this.contactPanel = tool.getContactPanel();
+//        try {
+//            contactPanel.setContactData(theContact, homePhone, workPhone, mobilePhone);
+//        } catch (DateFormatException ex) {
+//            /* BPR  Fill out error message */
+//            Logger.getLogger(GolfView.class.getName()).log(Level.SEVERE, null, ex);
+//        }
         JFrame frame = tool.getFrame();
         if(frame == null){
             frame = new JFrame("Edit Contact Panel");
         }
-        frame.getContentPane().setLayout(new BorderLayout());
-        frame.getContentPane().add( new AddContactButtonPanel(tool), BorderLayout.SOUTH);
-        frame.getContentPane().add(contactPanel, BorderLayout.CENTER);
-        frame.setSize(400, 300);
-        frame.setVisible(true);
+        //frame.getContentPane().setLayout(new BorderLayout());
+        //frame.getContentPane().add( new AddContactButtonPanel(tool), BorderLayout.SOUTH);
+        //frame.getContentPane().add(contactPanel, BorderLayout.CENTER);
+        //frame.setSize(400, 300);
+        //frame.setVisible(true);
           
         System.out.println("need to bring up an editing session for member " + item + 
             theContact.toString());

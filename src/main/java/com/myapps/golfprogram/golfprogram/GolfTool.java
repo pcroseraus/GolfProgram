@@ -4,8 +4,9 @@ import com.myapps.golfprogram.golfprogram.dataaccess.Contact;
 import com.myapps.golfprogram.golfprogram.dataaccess.ContactDao;
 import com.myapps.golfprogram.golfprogram.dataaccess.ContactTelDetail;
 import com.myapps.golfprogram.golfprogram.scores.ScoresTool;
-import com.myapps.golfprogram.golfprogram.ui.AddContactButtonPanel;
-import com.myapps.golfprogram.golfprogram.ui.ContactPanel;
+import com.myapps.golfprogram.golfprogram.ui.contacts.AddContactButtonPanel;
+import com.myapps.golfprogram.golfprogram.ui.contacts.AddContacts;
+import com.myapps.golfprogram.golfprogram.ui.contacts.ContactPanel;
 import java.awt.BorderLayout;
 import java.util.List;
 import java.util.Set;
@@ -26,10 +27,9 @@ public class GolfTool {
     private final GolfModel golfModel;
     private final GolfView golfView;
     private final ContactDao contactDao;
-    private JFrame contactFrame = new JFrame("Add Contact Panel");
-    private ContactPanel panel = new ContactPanel(this);
+    private AddContacts contactFrame; 
     
-    
+     
     /**
      * The Constructor for the Tool.  A constructor of any  class is designed to
      * accept arguments and to create and populate class members. This tool 
@@ -87,86 +87,84 @@ public class GolfTool {
      * business logic. 
      */
     public void notifyAddSelected(){
-        if(contactFrame == null){
-            contactFrame = new JFrame("Add Contact Panel");
-        }
+        //if(contactFrame == null){
+         //   //contactFrame = new JFrame("Add Contact Panel");
+        //    contactFrame = new AddContacts(this);
+        //}
         //panel = new ContactPanel(this);
-        AddContactButtonPanel buttonPanel = new AddContactButtonPanel(this);
-        contactFrame.setLayout(new BorderLayout());
-        contactFrame.add(panel, BorderLayout.CENTER);
-        contactFrame.add(buttonPanel, BorderLayout.SOUTH);
-        contactFrame.add(panel);
-        contactFrame.setSize(400,250);
-        contactFrame.setVisible(true);
+        //AddContactButtonPanel buttonPanel = new AddContactButtonPanel(this);
+        //contactFrame.setLayout(new BorderLayout());
+        //contactFrame.add(panel, BorderLayout.CENTER);
+        //contactFrame.add(buttonPanel, BorderLayout.SOUTH);
+        //contactFrame.add(panel);
+        //contactFrame.setSize(400,250);
+        //contactFrame.setVisible(true);
     }
 
-    public void notifySaveContact() {
+    public void notifySaveContact() {        
+        Contact data = contactFrame.getContactData();
         
-        Contact data = panel.getContactData();
         Long id = golfModel.getIdForName(data.getLastName() + "," + data.getFirstName());
         if( id == 0 ){
             //this is a save because the id could not be found
             contactDao.save(data);
             golfView.getComboModel().addElement(data.getLastName() + ", " + data.getFirstName());
             golfModel.addContact(data);
-            
+            contactFrame.closeFrame();
+            contactFrame = null;
         }else{
-            //this is an edit because the id was found and must be > 0
-            Contact contact = contactDao.findById(id);
-            contact.setFirstName(data.getFirstName());
-            contact.setLastName(data.getLastName());
-            contact.setBirthDate(data.getBirthDate());
-            
-            
-            Set<ContactTelDetail> details = contact.getContactTelDetails();
-            ContactTelDetail homeDeleteDetail = null;
-            ContactTelDetail workDeleteDetail = null;
-            ContactTelDetail mobileDeleteDetail = null;
-            
-            // Remove Home, Work, and Mobile Phone Records.
-            for(ContactTelDetail contactTel: details){
-                if(contactTel.getTelType().equals("Home")){
-                    homeDeleteDetail = contactTel;
-                }
-            }
-            if(homeDeleteDetail != null){
-                System.out.println("Setting Home phone to " + panel.getHomePhone());
-                homeDeleteDetail.setTelNumber(panel.getHomePhone());
-            }
-            
-            for(ContactTelDetail contactTel: details){
-                if(contactTel.getTelType().equals("Mobile")){
-                    mobileDeleteDetail = contactTel;
-                }
-            }
-            
-            if(mobileDeleteDetail != null){
-                System.out.println("Setting Mobile phone to " + panel.getMobilePhone());
-                mobileDeleteDetail.setTelNumber(panel.getMobilePhone());
-            }
-            for(ContactTelDetail contactTel: details){
-                if(contactTel.getTelType().equals("Work")){
-                    workDeleteDetail = contactTel;
-                }
-            }
-            
-            if(workDeleteDetail != null){
-                System.out.println("Setting Mobile phone to " + panel.getWorkPhone());
-                workDeleteDetail.setTelNumber(panel.getWorkPhone());
-            }
-            
-            
-            
-            contactDao.save(contact);
-            golfView.getComboModel().addElement(contact.getLastName() + "' " + contact.getFirstName());
-            
-            //this is an edit
-            
+//            //this is an edit because the id was found and must be > 0
+//            Contact contact = contactDao.findById(id);
+//            contact.setFirstName(data.getFirstName());
+//            contact.setLastName(data.getLastName());
+//            contact.setBirthDate(data.getBirthDate());
+//            
+//            
+//            Set<ContactTelDetail> details = contact.getContactTelDetails();
+//            ContactTelDetail homeDeleteDetail = null;
+//            ContactTelDetail workDeleteDetail = null;
+//            ContactTelDetail mobileDeleteDetail = null;
+//            
+//            // Remove Home, Work, and Mobile Phone Records.
+//            for(ContactTelDetail contactTel: details){
+//                if(contactTel.getTelType().equals("Home")){
+//                    homeDeleteDetail = contactTel;
+//                }
+//            }
+//            if(homeDeleteDetail != null){
+//                System.out.println("Setting Home phone to " + panel.getHomePhone());
+//                homeDeleteDetail.setTelNumber(panel.getHomePhone());
+//            }
+//            
+//            for(ContactTelDetail contactTel: details){
+//                if(contactTel.getTelType().equals("Mobile")){
+//                    mobileDeleteDetail = contactTel;
+//                }
+//            }
+//            
+//            if(mobileDeleteDetail != null){
+//                System.out.println("Setting Mobile phone to " + panel.getMobilePhone());
+//                mobileDeleteDetail.setTelNumber(panel.getMobilePhone());
+//            }
+//            for(ContactTelDetail contactTel: details){
+//                if(contactTel.getTelType().equals("Work")){
+//                    workDeleteDetail = contactTel;
+//                }
+//            }
+//            
+//            if(workDeleteDetail != null){
+//                System.out.println("Setting Mobile phone to " + panel.getWorkPhone());
+//                workDeleteDetail.setTelNumber(panel.getWorkPhone());
+//            }
+//                                    
+//            contactDao.save(contact);
+//            golfView.getComboModel().addElement(contact.getLastName() + "' " + contact.getFirstName());
+//            
+//            //this is an edit            
         }
         
-        //
-        contactFrame.setVisible(false);
-        contactFrame = null;
+        //contactFrame.setVisible(false);
+        //contactFrame = null;
     }
 
     /**
@@ -188,25 +186,29 @@ public class GolfTool {
     
     public void notifyEditContact(String item) {
         
-        // Need to open a contact panel set the data for it. 
-        Contact data = panel.getContactData();
-        contactDao.save(data);
-        contactFrame.setVisible(false);
-        contactFrame = null;
-        
+//        // Need to open a contact panel set the data for it. 
+//        //Contact data = panel.getContactData();
+//        Contact data = panel.getContactData();
+//        contactDao.save(data);
+//        contactFrame.setVisible(false);
+//        contactFrame = null;        
     }
     
-    public ContactPanel getContactPanel(){
-        return this.panel;
-    }
+//    public ContactPanel getContactPanel(){
+//        return this.panel;
+//    }
     
     public JFrame getFrame(){
         return contactFrame;
     }
 
     void addScore() {
-        ScoresTool scoreTool = new ScoresTool(contactDao);
-        
+        ScoresTool scoreTool = new ScoresTool(contactDao);        
+    }
+
+    public void createAddContactPanel() {
+        contactFrame = new AddContacts(this);
+        contactFrame.showFrame();
     }
     
 }
