@@ -10,6 +10,7 @@ import com.myapps.golfprogram.golfprogram.dataaccess.Contact;
 import com.myapps.golfprogram.golfprogram.dataaccess.ContactDao;
 import com.myapps.golfprogram.golfprogram.dataaccess.ContactData;
 import com.myapps.golfprogram.golfprogram.dataaccess.ContactTelDetail;
+import static com.myapps.golfprogram.golfprogram.ui.StringConstants.GOLF_FRAME_TITLE;
 import java.awt.BorderLayout;
 import java.awt.HeadlessException;
 import java.util.Date;
@@ -21,13 +22,11 @@ import org.springframework.context.support.GenericXmlApplicationContext;
  * @author roserp
  */
 public class GolfFrame extends JFrame{
-    
-    public static String TITLE = "Golf Contacts";
-    
+        
     private MainButtonPanel buttonPanel;
  
     public GolfFrame() throws HeadlessException {
-        super(TITLE);
+        super(GOLF_FRAME_TITLE);
         setLayoutManager();
         initButtonPanel();
         addComponents();
