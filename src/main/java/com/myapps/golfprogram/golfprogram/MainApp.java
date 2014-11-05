@@ -8,7 +8,8 @@ package com.myapps.golfprogram.golfprogram;
 
 import com.myapps.golfprogram.golfprogram.dataaccess.Contact;
 import com.myapps.golfprogram.golfprogram.dataaccess.ContactDao;
-import com.myapps.golfprogram.golfprogram.ui.GolfFrame;
+import com.myapps.golfprogram.golfprogram.properties.PropertiesReader;
+import java.io.IOException;
 import java.util.List;
 import org.springframework.context.support.GenericXmlApplicationContext;
 
@@ -31,8 +32,10 @@ import org.springframework.context.support.GenericXmlApplicationContext;
  */
 public class MainApp {
     
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException{
         System.out.println("Main Program running");
+        PropertiesReader propReader = new PropertiesReader("config.properties");
+        System.out.println("Program initiated by " + propReader.getPropValues());
         GenericXmlApplicationContext ctx = new GenericXmlApplicationContext();
         ctx.load("classpath:app-context.xml");
         ctx.refresh();
