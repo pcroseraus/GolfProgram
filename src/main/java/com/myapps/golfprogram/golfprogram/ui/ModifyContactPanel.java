@@ -6,6 +6,7 @@
 
 package com.myapps.golfprogram.golfprogram.ui;
 
+import com.myapps.golfprogram.golfprogram.backups.OldContactPanel;
 import com.myapps.golfprogram.golfprogram.GolfTool;
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
@@ -17,7 +18,7 @@ import javax.swing.JFrame;
 public class ModifyContactPanel extends JFrame{
     
     private ContactButtonPanel buttonPanel = null;
-    private ContactPanel contactPanel = null;
+    private OldContactPanel contactPanel = null;
     private GolfTool tool = null;
     
     public ModifyContactPanel(GolfTool tool, 
@@ -25,7 +26,7 @@ public class ModifyContactPanel extends JFrame{
         super();
         this.tool = tool;
         setLayoutManager();
-        contactPanel = new ContactPanel(tool);
+        contactPanel = new OldContactPanel(tool);
         this.buttonPanel = contactButtonPanel;
         addComponents();
     }
