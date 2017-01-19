@@ -50,7 +50,7 @@ public class ContactTablePanel extends JPanel {
     /**
      * This method populates the table of contact information for a contact. 
      * That includes the home, mobile, and work phone. If no data is included in
-     * the Contact object and empty cell is created. 
+     * the Contact object an empty cell is created. 
      * @param theContact 
      */
     public void setContact(Contact theContact) {

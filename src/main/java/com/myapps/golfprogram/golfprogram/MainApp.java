@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * I created this App to demonstrate an proficiency in Spring. 
  */
 
 package com.myapps.golfprogram.golfprogram;
@@ -14,14 +12,17 @@ import java.util.List;
 import org.springframework.context.support.GenericXmlApplicationContext;
 
 /**
- * This files gets everything going.  The Spring Context reads from a file in 
- * the classpath.  Classpath is in src/main/resources for the purposes of this 
- * application. You are usually save to place any files you want to include in
+ * This file gets everything going.  The Spring Context reads from a file in 
+ * the classpath. app-context.xml defines the datasource which is postgress in 
+ * this case, and the packages to scan that become candidates for autowiring and 
+ * injection. Classpath is in src/main/resources for the purposes of this 
+ * application. It is usually safe to place any files you want to include in
  * your application here. When maven creates the Jar file, it will  include this
  * file.
  * The ContactDao is a Data Access Object that will mine the contacts from the 
  * database which is postgresql at this time. Contacts have contact information
  * in the form of mobile, home, and work phones.
+ * 
  * Contacts also have Scores.  Each score is associated with a Golf Course, a
  * date, and a Score.  TODO: This is assuming how many holes??
  * Finally it instantiates the GolfTool which creates its view. The manipulation
@@ -33,7 +34,6 @@ import org.springframework.context.support.GenericXmlApplicationContext;
 public class MainApp {
     
     public static void main(String[] args) throws IOException{
-        System.out.println("Main Program running");
         PropertiesReader propReader = new PropertiesReader("config.properties");
         System.out.println("Program initiated by " + propReader.getPropValues());
         GenericXmlApplicationContext ctx = new GenericXmlApplicationContext();

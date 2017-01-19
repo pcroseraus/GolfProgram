@@ -1,16 +1,13 @@
 package com.myapps.golfprogram.golfprogram;
 
+import com.google.common.base.Preconditions;
 import com.myapps.golfprogram.golfprogram.dataaccess.Contact;
 import com.myapps.golfprogram.golfprogram.dataaccess.ContactDao;
-import com.myapps.golfprogram.golfprogram.dataaccess.ContactTelDetail;
 import com.myapps.golfprogram.golfprogram.scores.ScoresTool;
-import com.myapps.golfprogram.golfprogram.ui.contacts.AddContactButtonPanel;
 import com.myapps.golfprogram.golfprogram.ui.contacts.AddContacts;
-import com.myapps.golfprogram.golfprogram.ui.contacts.ContactPanel;
-import java.awt.BorderLayout;
 import java.util.List;
-import java.util.Set;
 import javax.swing.JFrame;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * The Tool is the controller in the Model view Controller pattern usually 
@@ -28,6 +25,10 @@ public class GolfTool {
     private final GolfView golfView;
     private final ContactDao contactDao;
     private AddContacts contactFrame; 
+    
+    // Need to figure out how to do this. 
+    //@Autowired
+    //private ContactDao contactDao;
     
      
     /**
@@ -53,6 +54,7 @@ public class GolfTool {
      */
     public GolfTool(List<Contact> contacts, ContactDao contactDao) {
         //Models typically hold the data. This model will hold the contacts. 
+        Preconditions.checkNotNull(contactDao);
         golfModel = new GolfModel(contacts);
         golfView = new GolfView(this,golfModel);
         this.contactDao = contactDao;
