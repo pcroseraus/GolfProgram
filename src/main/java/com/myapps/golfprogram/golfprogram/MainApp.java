@@ -50,7 +50,7 @@ public class MainApp {
          * the database.  This work should be moved to the Golf Tool.  TODO
          */
         final ContactDao contactDao = ctx.getBean("contactDao", ContactDao.class);
-        List<Contact> contacts = contactDao.findAll();
+        final List<Contact> contacts = contactDao.findAll();
         GolfTool golfTool = new GolfTool(contacts, contactDao);
         
         /** 

@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- *
+ * Remove Author. 
  * @author roserp
  */
 class GolfModel {
@@ -24,7 +24,7 @@ class GolfModel {
     }
     
     public String[] getNames(){
-        String[] names = new String[contacts.size()];
+        final String[] names = new String[contacts.size()];
         int i = 0;
         for( Contact contact : contacts ){
             names[i] = contact.getLastName() + ", "  + contact.getFirstName();
