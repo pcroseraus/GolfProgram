@@ -13,10 +13,10 @@ import java.util.Properties;
 
 /**
  * Common application for retrieving properties. 
- * @author roserp
+ *
  */
 public class PropertiesReader {
-    private String propertyFileName;
+    private final String propertyFileName;
 
     /**
      * Constructor of property reader accepts a property file name
@@ -28,17 +28,25 @@ public class PropertiesReader {
         
     }
     
+    /**
+     * The config file contains only one line in it at this time. I am sure as 
+     * program develops , other properties will be useful. It is assumed when
+     * a user buys the program and registers with the installer, this value can
+     * be used to present friendly message like Hello FirstName + LastName. 
+     * @return One String that matches the sole value in the config file. As the
+     * properties grow, we must return an ArrayList of Name Value Pairs. 
+     * @throws IOException 
+     */
     public String getPropValues() throws IOException{
-        String result = "";
-        Properties prop = new Properties();
+        final Properties prop = new Properties();
                 
-        InputStream inputStream = getClass().getClassLoader().
-                                            getResourceAsStream(propertyFileName);
+        final InputStream inputStream = getClass().getClassLoader().
+                                          getResourceAsStream(propertyFileName);
         prop.load(inputStream);
         
         if(inputStream == null){
-            throw new FileNotFoundException("property file " + propertyFileName +
-                " not found in the classpath");
+            throw new FileNotFoundException("property file " + propertyFileName
+                + " not found in the classpath");
         }
         return prop.toString();
     }

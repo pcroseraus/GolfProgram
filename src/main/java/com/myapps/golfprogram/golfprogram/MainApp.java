@@ -1,5 +1,8 @@
 /*
- * I created this App to demonstrate an proficiency in Spring. 
+ * I created this App to demonstrate an proficiency in Spring. Now it is time
+ * to continue this work.  Now Git should pick up the changes. 
+ * 
+ *
  */
 
 package com.myapps.golfprogram.golfprogram;
@@ -12,7 +15,8 @@ import java.util.List;
 import org.springframework.context.support.GenericXmlApplicationContext;
 
 /**
- * This file gets everything going.  The Spring Context reads from a file in 
+ * This file gets everything going.  It is called bootstrapping Spring. 
+ * The Spring Context reads from a file in 
  * the classpath. app-context.xml defines the datasource which is postgress in 
  * this case, and the packages to scan that become candidates for autowiring and 
  * injection. Classpath is in src/main/resources for the purposes of this 
@@ -34,9 +38,10 @@ import org.springframework.context.support.GenericXmlApplicationContext;
 public class MainApp {
     
     public static void main(String[] args) throws IOException{
-        PropertiesReader propReader = new PropertiesReader("config.properties");
+        final PropertiesReader propReader = new PropertiesReader("config.properties");
         System.out.println("Program initiated by " + propReader.getPropValues());
-        GenericXmlApplicationContext ctx = new GenericXmlApplicationContext();
+        final GenericXmlApplicationContext ctx = new GenericXmlApplicationContext();
+        // This is the location of the bootstap Spring context file. 
         ctx.load("classpath:app-context.xml");
         ctx.refresh();
         
@@ -44,7 +49,7 @@ public class MainApp {
          * The Main App should not need to know about getting information from 
          * the database.  This work should be moved to the Golf Tool.  TODO
          */
-        ContactDao contactDao = ctx.getBean("contactDao", ContactDao.class);
+        final ContactDao contactDao = ctx.getBean("contactDao", ContactDao.class);
         List<Contact> contacts = contactDao.findAll();
         GolfTool golfTool = new GolfTool(contacts, contactDao);
         
