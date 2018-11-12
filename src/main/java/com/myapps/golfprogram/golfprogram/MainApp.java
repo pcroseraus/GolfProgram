@@ -9,7 +9,7 @@ package com.myapps.golfprogram.golfprogram;
 
 import com.myapps.golfprogram.golfprogram.dataaccess.Contact;
 import com.myapps.golfprogram.golfprogram.dataaccess.ContactDao;
-import com.myapps.golfprogram.golfprogram.properties.PropertiesReader;
+import com.myapps.golfprogram.golfprogram.properties.UserNameConfiguration;
 import java.io.IOException;
 import java.util.List;
 import org.springframework.context.support.GenericXmlApplicationContext;
@@ -38,8 +38,9 @@ import org.springframework.context.support.GenericXmlApplicationContext;
 public class MainApp {
     
     public static void main(String[] args) throws IOException{
-        final PropertiesReader propReader = new PropertiesReader("config.properties");
-        System.out.println("Program initiated by " + propReader.getPropValues());
+        
+        System.out.println("Program initiated by " + UserNameConfiguration.getValueFromConfigFile());
+        
         final GenericXmlApplicationContext ctx = new GenericXmlApplicationContext();
         // This is the location of the bootstap Spring context file. 
         ctx.load("classpath:app-context.xml");
