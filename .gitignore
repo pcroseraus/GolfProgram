@@ -38,4 +38,8 @@ Icon
 
 
 # Adding target dir to ignore file
-target\
+target\*.class
+
+# class files
+*.class
+
