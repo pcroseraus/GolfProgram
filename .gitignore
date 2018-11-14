@@ -36,6 +36,7 @@ Icon
 .Spotlight-V100
 .Trashes
 
+target/
 
 # Adding target dir to ignore file
 target\*.class

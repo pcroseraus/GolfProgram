@@ -12,6 +12,8 @@ import com.myapps.golfprogram.golfprogram.dataaccess.ContactDao;
 import com.myapps.golfprogram.golfprogram.properties.PropertiesReader;
 import java.io.IOException;
 import java.util.List;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.context.support.GenericXmlApplicationContext;
 
 /**
@@ -36,8 +38,11 @@ import org.springframework.context.support.GenericXmlApplicationContext;
  * considered the main method.  
  */
 public class MainApp {
+    private static final Logger logger = LogManager.getLogger(MainApp.class);
+    
     
     public static void main(String[] args) throws IOException{
+        logger.info("Starting the golf app");
         final PropertiesReader propReader = new PropertiesReader("config.properties");
         System.out.println("Program initiated by " + propReader.getPropValues());
         final GenericXmlApplicationContext ctx = new GenericXmlApplicationContext();
